@@ -1,4 +1,4 @@
-from setuptools import setup, find packages
+from setuptools import setup, find_packages
 
 setup (
     name="edu_pad",
