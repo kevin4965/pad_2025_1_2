@@ -11,7 +11,7 @@ def main():
     df = dataweb.convertir_numericos(df)
     df_db = database.guardar_df(df)
     df_db2 = database.obtener_datos()
-    df_db2.to_csv("src/edu_pad/static/csv/data_webdb.csv", index=False)
+    df_db2.to_csv("src/static/csv/data_webdb.csv", index=False)
 
 
 
