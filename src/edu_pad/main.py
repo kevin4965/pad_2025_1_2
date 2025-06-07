@@ -1,19 +1,20 @@
-from dataweb import DataWeb
-from database import DataBase
-import pandas as pd
+FROM python:3.9-slim
 
+WORKDIR /pad_2025_1_2
 
+# Copiar todo el contenido
+COPY . .
 
-def main():
-    dataweb = DataWeb()
-    database = DataBase()
-    df = dataweb.obtener_datos()
-    df = dataweb.convertir_numericos(df)
-    df_db = database.guardar_df(df)
-    df_db2 = database.obtener_datos()
-    df_db2.to_csv("src/static/csv/data_webdb.csv", index=False)
+# Crear carpetas necesarias
+RUN mkdir -p static/csv static/db
 
+# Instalar dependencias
+RUN pip install --upgrade pip \
+    && pip install -e . \
+    && rm -rf /root/.cache/pip
 
+# Establecer PYTHONPATH para que encuentre los módulos en src/
+ENV PYTHONPATH=/pad_2025_1_2/src
 
-if __name__ == "__main__":
-    main()
+# Comando por defecto al correr el contenedor
+CMD ["python", "-m", "edu_pad.main"]
