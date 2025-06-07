@@ -26,4 +26,4 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}/static/csv":/pad_2025_1_2/static/csv \
             -v "${{ github.workspace }}/static/db":/pad_2025_1_2/static/db \
-            contenedor
+            contenedor python -m edu_pad.main
